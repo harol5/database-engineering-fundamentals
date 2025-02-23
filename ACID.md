@@ -1,6 +1,6 @@
 # Atomicity, Consistency, Isolation, Durability.
-
-to understand ACID you must understand what is a TRANSACTION first:
+A set of properties that guarantee reliable transaction processing in a database system.
+To understand ACID you must understand what is a TRANSACTION first:
 - A collection of queries.
 - one unit of work.
 - E.g. Account deposit (SELECT, UPDATE, UPDATE).
@@ -27,7 +27,7 @@ refer to issues that can arise when multiple transactions are executing concurre
 
 - Dirty reads -> reading data that might change because other transaction are running and has not commited.
 - non-repeatable read -> similar to a dirty read but the parallel transaction commited the changes, meaning the transaction that is still running might have inconsistent data in different parts of the transaction.
-- phantom read -> it happens when a parallel transaction add new records to a table and other parallel transaction where no able to get that new record.
+- phantom read -> it happens when a parallel transaction add new records to a table and other parallel transaction were not able to get that new record.
 - lost updates -> it happens when parallel transaction try to update the same data but only one of those updates actually modify the data and the other ones are lost. (possible solution -> locking the row?)
 
 ### Isolation Levels
@@ -42,8 +42,11 @@ helps prevent read phenomenas and define how transactions interact with each oth
 
 ## *Consistency*
 2 types:
-- in data -> state of the data. referential integrity
-- in reads -> not synchronized
+- in data -> state of the data. referential integrity, related to the database design.
+- in reads -> not synchronized, running parallel transaction.
+
+### Eventual Consistency
+the data will be updated eventually, (master -> writes, followers -> reads)
 
 ## *Durability*
 persistent of committed transactions in non-volatile storage.
